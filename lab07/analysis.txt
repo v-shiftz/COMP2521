@@ -1,0 +1,21 @@
+
+NOTE:
+- Your time complexities should be expressed in big-O notation and be in
+  terms of n, where n is the number of cells in the maze.
+
+============
+  solveBfs
+============
+
+- Worst case time complexity: O(n)
+
+- Explanation: The worst case time complexity happens when BFS searches through all cells in the maze.
+
+============
+  solveDfs
+============
+
+- Worst case time complexity: O(n)
+
+- Explanation: The worst case time complexity happens when DFS explores every cell in the maze once.
+
