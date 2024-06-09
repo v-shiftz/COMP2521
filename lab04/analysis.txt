@@ -1,0 +1,40 @@
+
+NOTE:
+- Your time complexities should be expressed in big-O notation and be in
+  terms of either:
+  - n, where n is the number of nodes in the tree, or
+  - h, where h is the height of the tree
+
+=================
+  bstNumLeaves
+=================
+
+- Worst case time complexity: O(n)
+
+- Explanation: It must run through all the nodes once to get to the leaves at the very bottom, hence it has a time complexity of O(n).
+
+=================
+    bstRange
+=================
+
+- Worst case time complexity: O(h)
+
+- Explanation: It must run through the entire height of the tree to get to the min and max values, hence it has a time complexity of O(h).
+
+=================
+ bstDeleteLeaves
+=================
+
+- Worst case time complexity: O(n)
+
+- Explanation: It must run through all the nodes to get to the leaves at the very bottom, hence it has a time complexity of O(n).
+
+=================
+  bstLevelOrder
+=================
+
+- Worst case time complexity: O(n)
+
+- Explanation: It will look through all the nodes and print it out accordingly at their respective level, hence it has a time complexity of O(n).
+
+
