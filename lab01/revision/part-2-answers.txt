@@ -1,0 +1,74 @@
+
+NOTE: Write your answers to Part 2 here!
+
+============================
+   AddressSanitizer error
+============================
+
+Paste the error from AddressSanitizer here:
+
+==1539158==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60200000001a at pc 0x5602db45ee67 bp 0x7ffd78e02b30 sp 0x7ffd78e022d8
+WRITE of size 6 at 0x60200000001a thread T0
+    #0 0x5602db45ee66 in strcat (/import/cage/9/z5408280/2521/lab01/makefiles/concatStrings+0x8de66) (BuildId: 5df336595779e8c49db957515b212e2f4c6d7f67)
+    #1 0x5602db4b0267 in concatStrings /import/cage/9/z5408280/2521/lab01/makefiles/concatStrings.c:34:2
+    #2 0x5602db4b0060 in main /import/cage/9/z5408280/2521/lab01/makefiles/concatStrings.c:26:12
+    #3 0x7f2b1ce00249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #4 0x7f2b1ce00304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #5 0x5602db3f2300 in _start (/import/cage/9/z5408280/2521/lab01/makefiles/concatStrings+0x21300) (BuildId: 5df336595779e8c49db957515b212e2f4c6d7f67)
+
+0x60200000001a is located 0 bytes to the right of 10-byte region [0x602000000010,0x60200000001a)
+allocated by thread T0 here:
+    #0 0x5602db47514e in __interceptor_malloc (/import/cage/9/z5408280/2521/lab01/makefiles/concatStrings+0xa414e) (BuildId: 5df336595779e8c49db957515b212e2f4c6d7f67)
+    #1 0x5602db4b01d1 in concatStrings /import/cage/9/z5408280/2521/lab01/makefiles/concatStrings.c:32:12
+    #2 0x5602db4b0060 in main /import/cage/9/z5408280/2521/lab01/makefiles/concatStrings.c:26:12
+    #3 0x7f2b1ce00249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/import/cage/9/z5408280/2521/lab01/makefiles/concatStrings+0x8de66) (BuildId: 5df336595779e8c49db957515b212e2f4c6d7f67) in strcat
+Shadow bytes around the buggy address:
+  0x0c047fff7fb0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fc0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fe0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7ff0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0c047fff8000: fa fa 00[02]fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8010: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8020: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8030: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8040: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8050: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+
+============================
+   MemorySanitizer error
+============================
+
+Paste the error from MemorySanitizer here:
+
+==1543707==WARNING: MemorySanitizer: use-of-uninitialized-value
+    #0 0x560aa95f47c3 in main /import/cage/9/z5408280/2521/lab01/makefiles/getMax.c:18:7
+    #1 0x7f44710e9249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #2 0x7f44710e9304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #3 0x560aa956e2b0 in _start (/import/cage/9/z5408280/2521/lab01/makefiles/getMax+0x212b0) (BuildId: 143ea07a8fb66666dc1c3dae6be9c6a719a66f32)
+
+  Uninitialized value was created by an allocation of 'max' in the stack frame of function 'main'
+    #0 0x560aa95f42a0 in main /import/cage/9/z5408280/2521/lab01/makefiles/getMax.c:5
+
+SUMMARY: MemorySanitizer: use-of-uninitialized-value /import/cage/9/z5408280/2521/lab01/makefiles/getMax.c:18:7 in main

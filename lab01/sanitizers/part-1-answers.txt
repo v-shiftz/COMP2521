@@ -1,0 +1,280 @@
+
+NOTE: Write your answers to Part 1 here!
+
+=================================
+    Program 1: listAddStart.c
+=================================
+
+Paste the error message here:
+==811195==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x602000000018 at pc 0x562e1a14c60b bp 0x7ffe9109eed0 sp 0x7ffe9109eec8
+WRITE of size 8 at 0x602000000018 thread T0
+    #0 0x562e1a14c60a in newNode /import/cage/9/z5408280/2521/lab01/sanitizers/listAddStart.c:43:10
+    #1 0x562e1a14c086 in listAddStart /import/cage/9/z5408280/2521/lab01/sanitizers/listAddStart.c:30:19
+    #2 0x562e1a14bfe9 in main /import/cage/9/z5408280/2521/lab01/sanitizers/listAddStart.c:22:10
+    #3 0x7f5a5a3d6249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #4 0x7f5a5a3d6304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #5 0x562e1a08e310 in _start (/import/cage/9/z5408280/2521/lab01/sanitizers/listAddStart+0x21310) (BuildId: d66b81bc225d7a7bbde0938c1ddba09dd4957694)
+
+0x602000000018 is located 0 bytes to the right of 8-byte region [0x602000000010,0x602000000018)
+allocated by thread T0 here:
+    #0 0x562e1a11115e in __interceptor_malloc (/import/cage/9/z5408280/2521/lab01/sanitizers/listAddStart+0xa415e) (BuildId: d66b81bc225d7a7bbde0938c1ddba09dd4957694)
+    #1 0x562e1a14c464 in newNode /import/cage/9/z5408280/2521/lab01/sanitizers/listAddStart.c:36:19
+    #2 0x562e1a14c086 in listAddStart /import/cage/9/z5408280/2521/lab01/sanitizers/listAddStart.c:30:19
+    #3 0x562e1a14bfe9 in main /import/cage/9/z5408280/2521/lab01/sanitizers/listAddStart.c:22:10
+    #4 0x7f5a5a3d6249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+
+Briefly explain what is wrong with the program:
+
+The error type is heap-buffer-overflow. 
+The error occurred in the function newNode at line 43.
+newNode() was called from main() in listAddStart.c at line 22
+
+
+The error occurred due to writing to an invalid address and based on the error message, it seems that the index being used is too high.
+The error stems from the function malloc() being called by newNode() at line 36.
+
+
+=================================
+    Program 2: shuffleArray.c
+=================================
+
+Paste the error message here:
+
+==834537==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x602000000015 at pc 0x5641ef94a8e0 bp 0x7ffe066b0810 sp 0x7ffe066aff98
+WRITE of size 4 at 0x602000000015 thread T0
+    #0 0x5641ef94a8df in scanf_common(void*, int, bool, char const*, __va_list_tag*) asan_interceptors.cpp.o
+    #1 0x5641ef94b326 in __interceptor___isoc99_scanf (/import/cage/9/z5408280/2521/lab01/sanitizers/shuffleArray+0x42326) (BuildId: a28bc3f49bfeceb247d7fc0df6c33702d3f2c96f)
+    #2 0x5641ef9e8242 in main /import/cage/9/z5408280/2521/lab01/sanitizers/shuffleArray.c:28:30
+    #3 0x7fabbcd36249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #4 0x7fabbcd36304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #5 0x5641ef92a330 in _start (/import/cage/9/z5408280/2521/lab01/sanitizers/shuffleArray+0x21330) (BuildId: a28bc3f49bfeceb247d7fc0df6c33702d3f2c96f)
+
+0x602000000015 is located 0 bytes to the right of 5-byte region [0x602000000010,0x602000000015)
+allocated by thread T0 here:
+    #0 0x5641ef9ad17e in __interceptor_malloc (/import/cage/9/z5408280/2521/lab01/sanitizers/shuffleArray+0xa417e) (BuildId: a28bc3f49bfeceb247d7fc0df6c33702d3f2c96f)
+    #1 0x5641ef9e80e0 in main /import/cage/9/z5408280/2521/lab01/sanitizers/shuffleArray.c:20:14
+    #2 0x7fabbcd36249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+
+Briefly explain what is wrong with the program:
+
+The error type is heap-buffer-overflow. 
+The error occurred in the function scanf() which was called by main() at line 28
+
+
+The error occurred due to writing to an invalid address and based on the error message, it seems that the index being used is too high.
+The error stems from the function malloc() which was called by main at line 20. 
+It would appear that the malloc did not assign enough bytes of memory as it should have assigned sizeof(int) * maxVals instead of just maxvals.
+
+=================================
+    Program 3: reverseArray.c
+=================================
+
+Paste the error message here:
+
+==870720==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x603000000054 at pc 0x56207e91d70a bp 0x7ffd7f5f06c0 sp 0x7ffd7f5f06b8
+READ of size 4 at 0x603000000054 thread T0
+    #0 0x56207e91d709 in reverse /import/cage/9/z5408280/2521/lab01/sanitizers/reverseArray.c:42:12
+    #1 0x56207e91d2a2 in main /import/cage/9/z5408280/2521/lab01/sanitizers/reverseArray.c:31:2
+    #2 0x7f388b855249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #3 0x7f388b855304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #4 0x56207e85f310 in _start (/import/cage/9/z5408280/2521/lab01/sanitizers/reverseArray+0x21310) (BuildId: 01c570e7326b79f7acd3866443dff16fdca189ed)
+
+0x603000000054 is located 0 bytes to the right of 20-byte region [0x603000000040,0x603000000054)
+allocated by thread T0 here:
+    #0 0x56207e8e215e in __interceptor_malloc (/import/cage/9/z5408280/2521/lab01/sanitizers/reverseArray+0xa415e) (BuildId: 01c570e7326b79f7acd3866443dff16fdca189ed)
+    #1 0x56207e91d0b4 in main /import/cage/9/z5408280/2521/lab01/sanitizers/reverseArray.c:17:14
+    #2 0x7f388b855249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+Briefly explain what is wrong with the program:
+
+The error type is heap-buffer-overflow. 
+The error occurred in the function reverse() at line 42 which was called by main() at line 31
+
+The error occurred due to reading from an invalid address and based on the error message, it seems that the index being used is too high.
+The error stems from the function reverse at line 42 and the size should deduct an additional 1.
+arr[i] = arr[size - i - 1];
+arr[size - i - 1] = tmp;
+
+
+=================================
+    Program 4: listPrepend.c
+=================================
+
+Paste the error message here:
+
+listPrepend.c:46:22: runtime error: member access within misaligned address 0xbebebebebebebebe for type 'struct node', which requires 8 byte alignment
+0xbebebebebebebebe: note: pointer points here
+<memory cannot be printed>
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior listPrepend.c:46:22 in 
+listPrepend.c:46:22: runtime error: load of misaligned address 0xbebebebebebebebe for type 'int', which requires 8 byte alignment
+0xbebebebebebebebe: note: pointer points here
+<memory cannot be printed>
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior listPrepend.c:46:22 in 
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==883722==ERROR: AddressSanitizer: SEGV on unknown address (pc 0x5563abdbc31e bp 0x7ffddf601e10 sp 0x7ffddf601dd0 T0)
+==883722==The signal is caused by a READ memory access.
+==883722==Hint: this fault was caused by a dereference of a high value address (see register values below).  Disassemble the provided pc to learn which register was used.
+    #0 0x5563abdbc31e in printList /import/cage/9/z5408280/2521/lab01/sanitizers/listPrepend.c:46:22
+    #1 0x5563abdbbffb in main /import/cage/9/z5408280/2521/lab01/sanitizers/listPrepend.c:23:2
+    #2 0x7fe2c3c86249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #3 0x7fe2c3c86304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #4 0x5563abcfe310 in _start (/import/cage/9/z5408280/2521/lab01/sanitizers/listPrepend+0x21310) (BuildId: 4ed494629c0de2ec7231630937cb00cbc0d4477e)
+
+Briefly explain what is wrong with the program:
+
+The error type is runtime error and SEGV on unknown address which is caused by the function printList() on line 46 when ran by main() at line 22.
+
+
+
+=================================
+     Program 5: listAppend.c
+=================================
+
+Paste the error message here:
+
+listAppend.c:37:8: runtime error: member access within null pointer of type 'struct node'
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior listAppend.c:37:8 in 
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==901572==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000008 (pc 0x561c9c9db1e6 bp 0x7ffd8544e1b0 sp 0x7ffd8544e160 T0)
+==901572==The signal is caused by a WRITE memory access.
+==901572==Hint: address points to the zero page.
+    #0 0x561c9c9db1e6 in listAppend /import/cage/9/z5408280/2521/lab01/sanitizers/listAppend.c:37:13
+    #1 0x561c9c9dafe9 in main /import/cage/9/z5408280/2521/lab01/sanitizers/listAppend.c:21:10
+    #2 0x7f1492780249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #3 0x7f1492780304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #4 0x561c9c91d310 in _start (/import/cage/9/z5408280/2521/lab01/sanitizers/listAppend+0x21310) (BuildId: 33728e32045b2fb56038e0c94d6f554fd1afe031)
+
+Briefly explain what is wrong with the program:
+
+The error occurred is runtime error and Segmentation Error caused by writing in the wrong memory.
+The error occurred in struct node *listAppend() on line 37 and was called by main() on line 21.
+
+As the curr is null, making curr->next = newNode causes this writing error.
+
+=================================
+  Program 6: listDeleteFirst.c
+=================================
+
+Paste the error message here:
+
+==4095442==ERROR: AddressSanitizer: heap-use-after-free on address 0x602000000018 at pc 0x55acc0ffe5b7 bp 0x7fff947e9040 sp 0x7fff947e9038
+READ of size 8 at 0x602000000018 thread T0
+    #0 0x55acc0ffe5b6 in listDeleteFirst /import/cage/9/z5408280/2521/lab01/sanitizers/listDeleteFirst.c:49:15
+    #1 0x55acc0ffe22e in main /import/cage/9/z5408280/2521/lab01/sanitizers/listDeleteFirst.c:35:9
+    #2 0x7f0d37eb7249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #3 0x7f0d37eb7304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #4 0x55acc0f40300 in _start (/import/cage/9/z5408280/2521/lab01/sanitizers/listDeleteFirst+0x21300) (BuildId: d3c295b88c9c4ef258c27ea1e167c2a56514ae14)
+
+0x602000000018 is located 8 bytes inside of 16-byte region [0x602000000010,0x602000000020)
+freed by thread T0 here:
+    #0 0x55acc0fc2ea2 in free (/import/cage/9/z5408280/2521/lab01/sanitizers/listDeleteFirst+0xa3ea2) (BuildId: d3c295b88c9c4ef258c27ea1e167c2a56514ae14)
+    #1 0x55acc0ffe52c in listDeleteFirst /import/cage/9/z5408280/2521/lab01/sanitizers/listDeleteFirst.c:48:2
+    #2 0x55acc0ffe22e in main /import/cage/9/z5408280/2521/lab01/sanitizers/listDeleteFirst.c:35:9
+    #3 0x7f0d37eb7249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+previously allocated by thread T0 here:
+    #0 0x55acc0fc314e in __interceptor_malloc (/import/cage/9/z5408280/2521/lab01/sanitizers/listDeleteFirst+0xa414e) (BuildId: d3c295b88c9c4ef258c27ea1e167c2a56514ae14)
+    #1 0x55acc0ffdfa4 in main /import/cage/9/z5408280/2521/lab01/sanitizers/listDeleteFirst.c:21:20
+    #2 0x7f0d37eb7249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+SUMMARY: AddressSanitizer: heap-use-after-free /import/cage/9/z5408280/2521/lab01/sanitizers/listDeleteFirst.c:49:15 in listDeleteFirst
+Shadow bytes around the buggy address:
+  0x0c047fff7fb0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fc0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fe0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7ff0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0c047fff8000: fa fa fd[fd]fa fa 00 00 fa fa 00 00 fa fa 00 00
+  0x0c047fff8010: fa fa 00 00 fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8020: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8030: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8040: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8050: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+
+Briefly explain what is wrong with the program:
+
+The error got caught by AddressSanitizer and the error reported is "heap-use-after-free" error, which means the program attempted to access memory after it had been freed.
+The error happened at line 48 under struct node *listDeleteFirst which is called by main at line 35.
+
+The issue lies at line 49 where it returns 'list->next' after being freed.
+
+=================================
+    Program 7: listNumEvens.c
+=================================
+
+Paste the error message here:
+
+==116533==WARNING: MemorySanitizer: use-of-uninitialized-value
+    #0 0x55faebf193a8 in listNumEvens /import/cage/9/z5408280/2521/lab01/sanitizers/listNumEvens.c:30:7
+    #1 0x55faebf185b0 in main /import/cage/9/z5408280/2521/lab01/sanitizers/listNumEvens.c:23:40
+    #2 0x7f114aaec249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #3 0x7f114aaec304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #4 0x55faebe922b0 in _start (/import/cage/9/z5408280/2521/lab01/sanitizers/listNumEvens+0x212b0) (BuildId: f635ac5bcf6cd99b89efb1c925fcdb18bb9599d7)
+
+  Uninitialized value was created by a heap allocation
+    #0 0x55faebec6ca0 in __interceptor_malloc (/import/cage/9/z5408280/2521/lab01/sanitizers/listNumEvens+0x55ca0) (BuildId: f635ac5bcf6cd99b89efb1c925fcdb18bb9599d7)
+    #1 0x55faebf19b7b in newNode /import/cage/9/z5408280/2521/lab01/sanitizers/listNumEvens.c:51:19
+    #2 0x55faebf188f0 in listAppend /import/cage/9/z5408280/2521/lab01/sanitizers/listNumEvens.c:39:10
+    #3 0x55faebf184d3 in main /import/cage/9/z5408280/2521/lab01/sanitizers/listNumEvens.c:20:10
+    #4 0x7f114aaec249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+SUMMARY: MemorySanitizer: use-of-uninitialized-value /import/cage/9/z5408280/2521/lab01/sanitizers/listNumEvens.c:30:7 in listNumEvens
+
+Briefly explain what is wrong with the program:
+
+The error is caught by MemorySanitizer and the error reported is "use-of-uninitialized-value", which means the program is using a value that was not initialised.
+The error happened at line 30 on the int listNumEvens function, which is called by main() at line 23.
+
+I am not sure where the error lies, but I believe it might have started from initialising the node.
+
+=================================
+ Program 8: mostFrequentLetter.c
+=================================
+
+Paste the error message here:
+
+==1335373==WARNING: MemorySanitizer: use-of-uninitialized-value
+    #0 0x56465f61a620 in mostFrequent /import/cage/9/z5408280/2521/lab01/sanitizers/mostFrequentLetter.c:35:7
+    #1 0x56465f619411 in main /import/cage/9/z5408280/2521/lab01/sanitizers/mostFrequentLetter.c:17:16
+    #2 0x7f60cb2bb249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #3 0x7f60cb2bb304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #4 0x56465f5932a0 in _start (/import/cage/9/z5408280/2521/lab01/sanitizers/mostFrequentLetter+0x212a0) (BuildId: e710f551303e25944a2340129bfcf322b5923b73)
+
+  Uninitialized value was stored to memory at
+    #0 0x56465f619d2d in mostFrequent /import/cage/9/z5408280/2521/lab01/sanitizers/mostFrequentLetter.c:26:24
+    #1 0x56465f619411 in main /import/cage/9/z5408280/2521/lab01/sanitizers/mostFrequentLetter.c:17:16
+    #2 0x7f60cb2bb249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+  Uninitialized value was created by an allocation of 'counts' in the stack frame of function 'mostFrequent'
+    #0 0x56465f619550 in mostFrequent /import/cage/9/z5408280/2521/lab01/sanitizers/mostFrequentLetter.c:21
+
+Briefly explain what is wrong with the program:
+
+The error is caught by MemorySanitizer and the error reported is "use-of-uninitialized-value".
+The error occurred on line 35 of the function char mostFrequent() when called by main() on line 17.
+
+I believe the error is due to the values in the array are not all initialised. Hence by setting everything to 0 to indicate 0 count should solve this issue.
+
