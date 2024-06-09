@@ -1,0 +1,10 @@
+Question 2
+
+Explain why the compilation error occurred and briefly describe how it
+can be fixed.
+
+The compilation error occurred because the program tries to access the
+graph struct, which is not accessible because the graph is an ADT. The
+program can be fixed by using the function in the Graph.h interface
+that inserts an edge.
+

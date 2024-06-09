@@ -1,0 +1,32 @@
+Question 5
+
+(a) Describe and justify the steps you would take to determine which
+    sorting algorithm the program uses.
+
+To determine the sorting algorithm, I can give it a special list of (alphabet, number) and use the 2 algorithms to sort this
+special list. For example:
+(A, 2)
+(B, 1)
+(A, 4)
+(C, 2)
+(A, 3)
+For selection sort (stable sorting algorithm), it will return:
+(A, 2)
+(A, 4)
+(A, 3)
+(B, 1)
+(C, 2)
+While for median-of-three quicksort (unstable sorting algorithm), it may return:
+(A, 2)
+(A, 3)
+(A, 4)
+(B, 1)
+(C, 2)
+
+
+(b) Is the sorting algorithm that the program uses stable? How confident
+    are you in your conclusion? Explain your answer.
+
+The output of the program looks stable. However, it may not be 100% stable as the example is too small
+and we would require a bigger sample size to differentiate between stable and unstable.
+

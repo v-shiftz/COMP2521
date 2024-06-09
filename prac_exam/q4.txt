@@ -1,0 +1,12 @@
+Question 4
+
+Which of the given algorithms could have been used to construct the
+mininum spanning tree? Justify your answer.
+
+Only Prim's algorithm and Kruskal's algorithm can be used for constructing the mininum spanning trees.
+But based on the way the edges are added, we can see that this should be the Kruskal's algorithm as
+it seems to be adding the edges based on the minimum weight, which is differet from the way Prim's algorithm
+works as it adds all the edges first.
+
+
+

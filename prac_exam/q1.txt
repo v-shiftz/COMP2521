@@ -1,0 +1,25 @@
+Question 1
+
+(a) What is the maximum input size that can be processed? Justify your
+    answer.
+ 10 = 1 day
+ 11 = 2^1 = 2 days
+ 12 = 2^2 = 4 days
+ 13 = 2^3 = 8 days
+ 14 = 2^4 = 16 days
+ 15 = 2^5 = 32 days
+ 16 = 2^6 = 64 days
+ 17 = 2^7 = 128 days
+ 18 = 2^8 = 256 days
+ 19 = 2^9 = 512 days
+ 20 = 2^10 = 1028 days
+ Hence if the pc is 1000 times faster, it will be be able to process 19 
+
+
+(b) What are the time complexities of fnA() and fnB() in terms of a and
+    b? Justify your answer.
+
+fnA() is O(b - a) as the range is a to b.  Hence the number of calls is the difference between b - a.
+
+fnB() is also like fnA() hence fnB() is O(b - a) * O(b - a) = O((b - a) ^ 2).
+
